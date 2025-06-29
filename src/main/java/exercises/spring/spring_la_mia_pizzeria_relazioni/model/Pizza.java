@@ -6,12 +6,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "pizzas")
@@ -34,6 +36,23 @@ public class Pizza {
     @DecimalMin(value = "0.01", message = "Min. price: €0.01")
     private double price;
 
+    @OneToMany(mappedBy = "pizzas")
+    private List<PromoCode> promoCodes;
+
+    // empty constructor
+    public Pizza() {
+    }
+
+    // constructor
+    public Pizza(Integer id, String name, String description, String url, double price) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.url = url;
+        this.price = price;
+    }
+
+    // getters and setters
     public Integer getId() {
         return id;
     }
@@ -74,15 +93,12 @@ public class Pizza {
         this.price = price;
     }
 
-    public Pizza() {
+    public List<PromoCode> getPromoCodes() {
+        return this.promoCodes;
     }
 
-    public Pizza(Integer id, String name, String description, String url, double price) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.url = url;
-        this.price = price;
+    public void setPromoCodes(List<PromoCode> promoCodes) {
+        this.promoCodes = promoCodes;
     }
 
     @Override
