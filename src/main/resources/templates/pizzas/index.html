@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:replace="~{fragments/template :: head}"></div>
+    <title>pizzas index</title>
+</head>
+
+<body>
+    <div th:replace="~{fragments/template :: navbar}"></div>
+    <!-- <h1>pizzas index</h1>
+    <p th:text="${pizzas}"></p> -->
+
+    <div class="container my-5">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="mb-4">Our Pizzas</h1>
+            <a th:href="@{/pizzas/create}" class="btn btn-primary btn-sm mb-4">Create a new pizza</a>
+        </div>
+        <form th:action="@{/pizzas/searchByName}" method="get" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="name" class="form-control" placeholder="Search pizzas by name" />
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+
+        <div th:if="${!hasPizzas}" class="alert alert-info">We apologise. No pizzas are currently available.</div>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4" th:if="${hasPizzas}">
+            <div class="col" th:each="pizza : ${pizzas}">
+                <div class="card h-100 shadow-sm">
+                    <img th:src="@{${pizza.url != null && !pizza.url.isEmpty() ? '/img/' + pizza.url : '/img/placeholder.jpg'}}"
+                        class="card-img-top" alt="Pizza Image">
+
+
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <h5 class="card-title">
+                            <a th:href="@{'/pizzas/' + ${pizza.id}}" th:text="${pizza.name}"></a>
+                        </h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="card-text fw-semibold text-dark"
+                                th:text="'€' + ${#numbers.formatDecimal(pizza.price, 1, 'COMMA', 2, 'POINT')}"></p>
+                            <div class="d-flex gap-1">
+                                <a th:href="@{/pizzas/edit/{id}(id=${pizza.id})}"
+                                    class="btn btn-success btn-sm">Edit</a>
+                                <form action="#" th:action="@{/pizzas/delete/{id}(id=${pizza.id})}" method="post">
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <a th:href="@{/pizzas/create}" class="btn btn-primary btn-sm my-5">Create a new pizza</a>
+        </div>
+    </div>
+
+    <div th:replace="~{fragments/template :: js}"></div>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+INSERT INTO pizzas (id, name, description, url, price) VALUES (NULL, 'Margherita', 'Classic pizza with tomato sauce, mozzarella, and fresh basil.', '/margherita.jpg', 5.99);
+INSERT INTO pizzas (id, name, description, url, price) VALUES (NULL, 'Diavola', 'Spicy salami, tomato sauce, mozzarella, and chili flakes.', '/diavola.jpg', 7.50);
+INSERT INTO pizzas (id, name, description, url, price) VALUES (NULL, 'Quattro Formaggi', 'Mozzarella, gorgonzola, parmesan, and fontina cheeses.', '', 8.25);
+INSERT INTO pizzas (id, name, description, url, price) VALUES (NULL, 'Vegetariana', 'Tomato sauce, mozzarella, grilled vegetables including zucchini, peppers, and eggplant.', '/veggie.jpg', 7.00);
+INSERT INTO pizzas (id, name, description, url, price) VALUES (NULL, 'Prosciutto e Funghi', 'Tomato sauce, mozzarella, prosciutto ham, and mushrooms.', '', 7.75);
+INSERT INTO pizzas (id, name, description, url, price) VALUES (NULL, 'Capricciosa', 'Tomato sauce, mozzarella, artichokes, ham, mushrooms, and olives.', '/capri.jpg', 8.00);
+INSERT INTO pizzas (id, name, description, url, price) VALUES (NULL, 'Hawaiian', 'Tomato sauce, mozzarella, ham, and pineapple.', '', 7.20);
+INSERT INTO pizzas (id, name, description, url, price) VALUES (NULL, 'Napoli', 'Tomato sauce, mozzarella, anchovies, and capers.', '/nap.jpg', 7.50);
+INSERT INTO pizzas (id, name, description, url, price) VALUES (NULL, 'Bufalina', 'Tomato sauce, buffalo mozzarella, and fresh basil.', '/bufa.jpg', 9.00);
+INSERT INTO pizzas (id, name, description, url, price) VALUES (NULL, 'BBQ Chicken', 'BBQ sauce, mozzarella, grilled chicken, red onions, and cilantro.', '', 8.50);

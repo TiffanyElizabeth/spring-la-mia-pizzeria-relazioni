@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:replace="~{fragments/template :: head}"></div>
+    <title th:text="${pizza.name}">detail</title>
+</head>
+
+<body>
+    <div th:replace="~{fragments/template :: navbar}"></div>
+    <div class="container my-5">
+        <h1 class="mb-4" th:text="${pizza.name}">Pizza</h1>
+        <p class="fst-italic" th:text="${pizza.description}">Description</p>
+
+        <p class="card-text fw-semibold text-dark"
+            th:text="'€' + ${#numbers.formatDecimal(pizza.price, 1, 'COMMA', 2, 'POINT')}">price</p>
+        <img th:src="@{${pizza.url != null && !pizza.url.isEmpty() ? '/img/' + pizza.url : '/img/placeholder.jpg'}}"
+            class="w-50" alt="Pizza Image">
+        <br>
+        <div class="d-flex gap-1">
+            <a th:href="@{/pizzas/edit/{id}(id=${pizza.id})}" class="btn btn-success btn-sm">Edit</a>
+            <form action="#" th:action="@{/pizzas/delete/{id}(id=${pizza.id})}" method="post">
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+
+    <div th:replace="~{fragments/template :: js}"></div>
+</body>
+
+</html>
