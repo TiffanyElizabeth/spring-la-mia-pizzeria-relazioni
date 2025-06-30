@@ -23,7 +23,36 @@
                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
             </form>
         </div>
+        <div class="my-5">
+            <div class="col-12" th:unless="${pizza.getPromoCodes().size() > 0}">
+                <div class="alert alert-warning">
+                    <h2 th:text="'There are no promo codes available for ' + ${pizza.name}">There are no promo codes
+                        available. </h2>
+                </div>
 
+            </div>
+            <div class="col-12" th:if="${pizza.getPromoCodes().size() > 0}">
+                <h2>Promo Codes</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Promo Code</th>
+                            <th scope="col">Effective Date</th>
+                            <th scope="col">Expiration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="promoCode : *{pizza.promoCodes}">
+                            <th scope="row">[[${promoCode.id}]]</th>
+                            <td>[[${promoCode.promoName}]]</td>
+                            <td>[[${promoCode.startDate}]]</td>
+                            <td>[[${promoCode.endDate}]]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
 
 
