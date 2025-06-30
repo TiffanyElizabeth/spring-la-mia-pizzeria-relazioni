@@ -90,5 +90,8 @@ public class PromoCode {
     }
 
     // toString:
+    public String toString() {
+        return String.format("'%d'- '%s' (%s)", String.valueOf(id), promoName, pizza.getName());
+    }
 
 }

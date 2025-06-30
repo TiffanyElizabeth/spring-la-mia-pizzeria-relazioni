@@ -36,7 +36,7 @@ public class Pizza {
     @DecimalMin(value = "0.01", message = "Min. price: €0.01")
     private double price;
 
-    @OneToMany(mappedBy = "pizzas")
+    @OneToMany(mappedBy = "pizza")
     private List<PromoCode> promoCodes;
 
     // empty constructor

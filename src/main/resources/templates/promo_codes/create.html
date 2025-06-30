@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:replace="~{fragments/template :: head}"></div>
+    <title th:text="|Create a new promo code for ${promoCode.getPizza().getName()}|">promo code creation</title>
+
+</head>
+
+<body>
+    <div th:replace="~{fragments/template :: navbar}"></div>
+    <div class="container my-5">
+        <h1 class="mb-4">Create a new promo code for [[${promoCode.getPizza().getName()}]]</h1>
+
+
+        <form id="create-promo-code-form" th:object="${promoCode}" th:action="@{/promos/create}" method="post">
+
+            <input type="hidden" th:field="*{pizza}" id="linked pizza">
+
+            <div class="mb-3">
+                <label class="form-label" for="promoName">Promo Name</label>
+                <input type="text" class="form-control" id="promoName" placeholder="Enter promo name"
+                    th:field="*{promoName}" th:errorClass="is-invalid">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('promoName')}">
+                    <ul>
+                        <li th:each="error : ${#fields.errors('promoName')}" th:text=${error}></li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+            <div class="mb-3">
+                <label class="form-label" for="start-date">Start Date</label>
+                <input type="date" class="form-control" id="start-date" placeholder="Enter start date"
+                    th:field="*{startDate}" th:errorClass="is-invalid">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('startDate')}">
+                    <ul>
+                        <li th:each="error : ${#fields.errors('startDate')}" th:text=${error}></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="end-date">End Date</label>
+                <input type="date" class="form-control" id="end-date" placeholder="Enter end date" th:field="*{endDate}"
+                    th:errorClass="is-invalid">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('endDate')}">
+                    <ul>
+                        <li th:each="error : ${#fields.errors('endDate')}" th:text=${error}></li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+            <div class="mb-3 d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary" value="create new promo code">Submit</button>
+                <button type="reset" class="btn btn-warning" value="reset all fields">Reset</button>
+            </div>
+        </form>
+    </div>
+
+
+    <div th:replace="~{fragments/template :: js}"></div>
+</body>
+
+</html>

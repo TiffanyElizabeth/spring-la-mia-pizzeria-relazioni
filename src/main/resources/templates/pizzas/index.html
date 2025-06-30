@@ -40,6 +40,9 @@
                             <p class="card-text fw-semibold text-dark"
                                 th:text="'€' + ${#numbers.formatDecimal(pizza.price, 1, 'COMMA', 2, 'POINT')}"></p>
                             <div class="d-flex gap-1">
+                                <a th:href="@{/pizzas/{id}/promo(id=${pizza.id})}" class="btn btn-warning btn-sm">New
+                                    Promo</a>
+
                                 <a th:href="@{/pizzas/edit/{id}(id=${pizza.id})}"
                                     class="btn btn-success btn-sm">Edit</a>
                                 <form action="#" th:action="@{/pizzas/delete/{id}(id=${pizza.id})}" method="post">
