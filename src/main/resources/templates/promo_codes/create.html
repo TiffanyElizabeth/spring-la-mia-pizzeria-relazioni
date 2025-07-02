@@ -13,7 +13,8 @@
         <h1 class="mb-4">Create a new promo code for [[${promoCode.getPizza().getName()}]]</h1>
 
 
-        <form id="create-promo-code-form" th:object="${promoCode}" th:action="@{/promos/create}" method="post">
+        <form id="create-promo-code-form" th:object="${promoCode}"
+            th:action="${edit} ? @{|/promos/edit/${promoCode.id}|} : @{/promos/create}" method="post">
 
             <input type="hidden" th:field="*{pizza}" id="linked pizza">
 

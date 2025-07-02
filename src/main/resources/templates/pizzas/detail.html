@@ -18,6 +18,8 @@
             class="w-50" alt="Pizza Image">
         <br>
         <div class="d-flex gap-1">
+            <a th:href="@{/pizzas/{id}/promo(id=${pizza.id})}" class="btn btn-warning btn-sm">New
+                Promo</a>
             <a th:href="@{/pizzas/edit/{id}(id=${pizza.id})}" class="btn btn-success btn-sm">Edit</a>
             <form action="#" th:action="@{/pizzas/delete/{id}(id=${pizza.id})}" method="post">
                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -40,6 +42,7 @@
                             <th scope="col">Promo Code</th>
                             <th scope="col">Effective Date</th>
                             <th scope="col">Expiration</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,6 +51,10 @@
                             <td>[[${promoCode.promoName}]]</td>
                             <td>[[${promoCode.startDate}]]</td>
                             <td>[[${promoCode.endDate}]]</td>
+                            <td>
+                                <a th:href="@{/promos/edit/{id}(id=${promoCode.id})}"
+                                    class="btn btn-success btn-sm">Edit</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
