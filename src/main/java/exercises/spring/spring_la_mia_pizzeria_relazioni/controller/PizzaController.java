@@ -6,6 +6,7 @@ import exercises.spring.spring_la_mia_pizzeria_relazioni.model.PromoCode;
 import java.util.List;
 
 import exercises.spring.spring_la_mia_pizzeria_relazioni.repository.PizzaRepository;
+import exercises.spring.spring_la_mia_pizzeria_relazioni.repository.PromoCodeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,9 @@ public class PizzaController {
 
     @Autowired
     private PizzaRepository repository;
+
+    @Autowired
+    private PromoCodeRepository promoCodeRepository;
 
     @GetMapping
     public String index(Model model) {
@@ -99,7 +103,14 @@ public class PizzaController {
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable Integer id) {
-        repository.deleteById(id);
+
+        Pizza pizza = repository.findById(id).get();
+
+        for (PromoCode promoCodeToDelete : pizza.getPromoCodes()) {
+            promoCodeRepository.delete(promoCodeToDelete);
+        }
+
+        repository.delete(pizza);
         return "redirect:/pizzas";
     }
 
