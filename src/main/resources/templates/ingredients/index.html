@@ -39,7 +39,10 @@
                             <td>[[${ingredient.name}]]</td>
                             <td>
                                 <ul class="mb-0">
-                                    <li th:each="pizza : ${ingredient.pizzas}" th:text="${pizza.name}">Pizza Name</li>
+                                    <li th:each="pizza : ${ingredient.pizzas}">
+                                        <a th:href="@{/pizzas/{id}(id=${pizza.id})}" th:text="${pizza.name}">Pizza
+                                            Name</a>
+                                    </li>
                                 </ul>
                             </td>
                             <td>
