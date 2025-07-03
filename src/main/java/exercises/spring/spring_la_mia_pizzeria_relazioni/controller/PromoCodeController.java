@@ -82,4 +82,13 @@ public class PromoCodeController {
         return "redirect:/pizzas";
     }
 
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable Integer id) {
+        PromoCode promoCode = repository.findById(id).get();
+
+        repository.delete(promoCode);
+
+        return "redirect:/pizzas";
+    }
+
 }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:replace="~{fragments/template :: head}"></div>
+    <title>ingredients index</title>
+</head>
+
+<body>
+    <div th:replace="~{fragments/template :: navbar}"></div>
+
+    <div class="container my-5">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="mb-4">Our Ingredients</h1>
+            <a th:href="@{/ingredients/create}" class="btn btn-primary btn-sm mb-4">Add a new ingredient</a>
+        </div>
+        <form th:action="@{/ingredients/searchByName}" method="get" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="name" class="form-control" placeholder="Find an ingredient" />
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+        <div class="my-5">
+            <div th:if="${!hasIngredients}" class="col-12 alert alert-info">We apologise. No ingredients were found.
+            </div>
+            <div class="col-12" th:if="${hasIngredients}">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Ingredient</th>
+                            <th scope="col">Pizzas</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="ingredient : *{ingredient}">
+                            <th scope="row">[[${ingredient.id}]]</th>
+                            <td>[[${ingredient.name}]]</td>
+                            <td>
+                                <ul class="mb-0">
+                                    <li th:each="pizza : ${ingredient.pizzas}" th:text="${pizza.name}">Pizza Name</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <div class="d-flex">
+                                    <a th:href="@{/ingredients/edit/{id}(id=${ingredient.id})}"
+                                        class="btn btn-success btn-sm me-2">Edit</a>
+                                    <form action="#" th:action="@{/ingredients/delete/{id}(id=${ingredient.id})}"
+                                        method="post">
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </div>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <div th:replace="~{fragments/template :: js}"></div>
+</body>
+
+</html>

@@ -22,7 +22,7 @@ public class Ingredient {
     @Size(min = 2, message = "name must have at least 2 characters")
     private String name;
 
-    @ManyToMany(mappedBy = "pizza")
+    @ManyToMany(mappedBy = "ingredients")
     private List<Pizza> pizzas;
 
     // empty constructor

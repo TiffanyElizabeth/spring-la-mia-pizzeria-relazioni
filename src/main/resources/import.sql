@@ -8,3 +8,9 @@ INSERT INTO pizzas (id, name, description, url, price) VALUES (NULL, 'Hawaiian',
 INSERT INTO pizzas (id, name, description, url, price) VALUES (NULL, 'Napoli', 'Tomato sauce, mozzarella, anchovies, and capers.', '/nap.jpg', 7.50);
 INSERT INTO pizzas (id, name, description, url, price) VALUES (NULL, 'Bufalina', 'Tomato sauce, buffalo mozzarella, and fresh basil.', '/bufa.jpg', 9.00);
 INSERT INTO pizzas (id, name, description, url, price) VALUES (NULL, 'BBQ Chicken', 'BBQ sauce, mozzarella, grilled chicken, red onions, and cilantro.', '', 8.50);
+INSERT INTO ingredients (id, name) VALUES (NULL, 'Tomato Sauce');
+INSERT INTO ingredients (id, name) VALUES (NULL, 'Mozzarella');
+INSERT INTO ingredients (id, name) VALUES (NULL, 'Fresh Basil');
+INSERT INTO ingredients (id, name) VALUES (NULL, 'Spicy Salami');
+INSERT INTO ingredients (id, name) VALUES (NULL, 'Mushrooms');
+INSERT INTO ingredients (id, name) VALUES (NULL, 'Olives');

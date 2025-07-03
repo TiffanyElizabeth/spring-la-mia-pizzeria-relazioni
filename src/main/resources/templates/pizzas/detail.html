@@ -17,6 +17,18 @@
         <img th:src="@{${pizza.url != null && !pizza.url.isEmpty() ? '/img/' + pizza.url : '/img/placeholder.jpg'}}"
             class="w-50" alt="Pizza Image">
         <br>
+        <div>
+            <th:block th:if="${pizza.ingredients.size() > 0}">
+                <h3>Ingredients:</h3>
+                <ul>
+                    <li th:each="ingredient : ${pizza.ingredients}" th:text="${ingredient.name}">Name</li>
+                </ul>
+            </th:block>
+            <th:block th:unless="${pizza.getIngredients().size() > 0}">
+                <p class="mb-3 alert alert-info">No ingredients have been specified for this pizza</p>
+            </th:block>
+        </div>
+
         <div class="d-flex gap-1">
             <a th:href="@{/pizzas/{id}/promo(id=${pizza.id})}" class="btn btn-warning btn-sm">New
                 Promo</a>
@@ -52,8 +64,14 @@
                             <td>[[${promoCode.startDate}]]</td>
                             <td>[[${promoCode.endDate}]]</td>
                             <td>
-                                <a th:href="@{/promos/edit/{id}(id=${promoCode.id})}"
-                                    class="btn btn-success btn-sm">Edit</a>
+                                <div class="d-flex">
+                                    <a th:href="@{/promos/edit/{id}(id=${promoCode.id})}"
+                                        class="btn btn-success btn-sm me-2">Edit</a>
+
+                                    <form action="#" th:action="@{/promos/delete/{id}(id=${promoCode.id})}"
+                                        method="post">
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
